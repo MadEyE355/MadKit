@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Arial;
+        width: 200px;
+        padding: 10px;
+      }
+      button {
+        padding: 8px;
+        width: 100%;
+      }
+      textarea {
+        width: 100%;
+        height: 80px;
+      }
+
+      #xss_sub_btns , #custom_xss_start_btn {
+        display: none;
+      }
+      #custom_xss_inputs {
+        display: none;
+      }
+      
+
+    </style>
+  </head>
+  <body>
+    <h3>MadKit</h3>
+
+    <button id="xss_main_btn">XSS</button>
+
+    <div id="xss_sub_btns">
+
+        <button id="custom_xss_btn">Custom XSS</button>
+
+            <div id="custom_xss_inputs" class="xss_inputs">
+                <label class="xss_info_label">Enter Inupt box Selector</label>
+                <textarea name="custom_xss_input_selector" id="custom_xss_input_selector"></textarea>
+
+                <label class="xss_info_label">Enter Search button Selector</label>
+                <textarea name="custom_xss_searchBtn_selector" id="custom_xss_searchBtn_selector"></textarea>
+                
+                <label class="xss_info_label">Enter Payload</label>
+                <textarea name="custom_xss_payload" id="custom_xss_payload" placeholder="Enter each payload in a new line"></textarea>
+            </div>
+        <button class="xss_start_btns" id="custom_xss_start_btn">Start Custom XSS</button>
+        
+
+    </div>
+
+
+    <!-- <div id="xss_info">
+
+    <label class = "xss_label">Enter Selector</label>
+    <textarea id="selector_for_xss" name="selector_for_xss"></textarea>
+
+    <label class = "xss_label">Enter Payload</label>
+    <textarea name="xss_payload" id="xss_payload" ></textarea>
+
+    <button id="start_xss">Start Xss</button>
+    </div> -->
+
+
+
+
+    <script src="popup.js"></script>
+  </body>
+</html>
