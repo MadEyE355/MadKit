@@ -61,7 +61,7 @@ async function start_xss(param_payload , param_attackSite , param_searchBtn) {
             let index = Number(sessionStorage.getItem("indx") || 0)
             sessionStorage.setItem("indx" , index+1)
 
-            payload_to_test = payload_parts[index]
+            let payload_to_test = payload_parts[index]
             
             await set_last_tested_payload(payload_to_test)
 
