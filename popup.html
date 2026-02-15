@@ -22,12 +22,20 @@
       #custom_xss_inputs {
         display: none;
       }
+
+      #endpoint_scan_inputs , #custom_endpoints_inputs , #endpoint_scan_start_btn {
+        display: none;
+      }
       
 
     </style>
   </head>
   <body>
     <h3>MadKit</h3>
+
+
+
+
 
     <button id="xss_main_btn">XSS</button>
 
@@ -36,6 +44,9 @@
         <button id="custom_xss_btn">Custom XSS</button>
 
             <div id="custom_xss_inputs" class="xss_inputs">
+                <label>go back on</label>
+                <input type="checkbox"><br>
+
                 <label class="xss_info_label">Enter Inupt box Selector</label>
                 <textarea name="custom_xss_input_selector" id="custom_xss_input_selector"></textarea>
 
@@ -59,12 +70,39 @@
 
 
 
+    <button id="endpoint_scan_btn">Endpoint Scan</button>
+
+    <div id="endpoint_scan_inputs">
+      <label class="custom_endpoints_label" >Custom Endpoints</label>
+      <input type="checkbox" id="custom_endpoints_checkbox"><br><br>
+
+      <div id="custom_endpoints_inputs">
+        <label class="custom_endpoints_label">Enter Endpoints to check</label>
+        <textarea id="custom_endpoints_paylaod" placeholder="Enter each endpoint in a new line (without /)"></textarea>
+      </div>
+
+      <button id="endpoint_scan_start_btn">Start Endpoint Check</button>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+
 
 
 
     
+    <!-- module was added so each file can have its own vars even if vars are already defined -->
 
     <script type="module" src="custom_xss.mjs"></script>
+    <script type="module" src="endpoint_scan.mjs"></script>
 
   </body>
 </html>

@@ -11,6 +11,8 @@ const customXssSBS = document.getElementById("custom_xss_searchBtn_selector")
 const xssStartBtns = document.querySelectorAll(".xss_start_btns");
 const checkLastPayloadBtn = document.getElementById("check_last_payload");
 
+const endpointScanBtn = document.getElementById("endpoint_scan_btn");
+
 checkLastPayloadBtn.addEventListener("click", () => {
     get_last_tested_payload()
 })
@@ -19,6 +21,8 @@ checkLastPayloadBtn.addEventListener("click", () => {
 xssMainBtn.addEventListener("click", () => {
     xssMainBtn.style.display = "none";
     xssSubBtns.style.display = "block";
+    
+    endpointScanBtn.style.display = "none";
 })
 
 customXssBtn.addEventListener("click", (e) => {
