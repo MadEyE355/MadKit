@@ -1,1 +1,0 @@
-console.log(Number('l') > 4)
