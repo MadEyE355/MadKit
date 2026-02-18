@@ -11,6 +11,8 @@ const noOfEndpointsCheckedDiv = document.getElementById("no_of_endpoints_checked
 
 const endpointScanResultDisplayDiv = document.getElementById("endpoint_scan_result_display");
 
+const clearEndpointScanResult = document.getElementById("clear_endpoint_scan_result");
+
 const xssMainBtn = document.getElementById("xss_main_btn");
 
 
@@ -18,6 +20,9 @@ endpointScanBtn.addEventListener("click", () => {
     endpointScanInputs.style.display = "block";
     xssMainBtn.style.display = "none";
     endpointScanStartBtn.style.display = "block";
+
+    show_result_history();
+
 })
 
 customEndpointsCheckbox.addEventListener("change", () => {
@@ -189,6 +194,8 @@ let payload = `
             status : response_status,
             full_link : site+payload_parts[checked]
         })
+
+
         
         noOfEndpointsCheckedDiv.innerHTML = `${checked+1} / ${payload_length}`
         checked++;
@@ -209,13 +216,13 @@ async function start_endpoint_scan(single_endpoint , param_site) {
 }
 
 
-
-
 endpointScanResultBtn.addEventListener("click", () => {
     endpointScanResultDisplayDiv.style.display = "block";
 
     // Clear old results first
     endpointScanResultDisplayDiv.innerHTML = "";
+
+    result.sort((a, b) => a.status - b.status);
 
     for (const r of result) {
 
@@ -254,4 +261,29 @@ endpointScanResultBtn.addEventListener("click", () => {
         endpointScanResultDisplayDiv.appendChild(row);
     }
 
+    set_result_history(endpointScanResultDisplayDiv.innerHTML);
+
+});
+
+
+async function set_result_history(html) {
+    await chrome.storage.local.set({
+        history_html : html
+});
+}
+
+
+async function show_result_history() {
+    endpointScanResultDisplayDiv.style.display = "block";
+
+    let history_data = await chrome.storage.local.get("history_html");
+
+
+    endpointScanResultDisplayDiv.innerHTML = history_data.history_html || "";
+}
+
+
+clearEndpointScanResult.addEventListener("click", async ()=>{
+    await chrome.storage.local.remove("history_html");
+    endpointScanResultDisplayDiv.innerHTML = "";
 });

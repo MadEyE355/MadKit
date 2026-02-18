@@ -23,7 +23,7 @@
         display: none;
       }
 
-      #endpoint_scan_inputs , #custom_endpoints_inputs , #endpoint_scan_start_btn ,#endpoint_scan_result_btn , #endpoint_scan_result_display {
+      #endpoint_scan_inputs , #custom_endpoints_inputs , #endpoint_scan_start_btn ,#endpoint_scan_result_btn  {
         display: none;
       }
 
@@ -74,29 +74,31 @@
 
 
     <button id="endpoint_scan_btn">Endpoint Scan</button>
-
+    
     <div id="endpoint_scan_inputs">
+      <button id="clear_endpoint_scan_result">Clear Endpoint Scan Results</button>
+      
       <label class="custom_endpoints_label" >Custom Endpoints</label>
       <input type="checkbox" id="custom_endpoints_checkbox"><br><br>
-
+      
       <label>Enter Site</label>
       <textarea id="site_to_scan_for_endpoints" placeholder="starting from https and ending with .com (not including / after .com)"></textarea>
-
+      
       <div id="custom_endpoints_inputs">
         <label class="custom_endpoints_label">Enter Endpoints to check</label>
         <textarea id="custom_endpoints_paylaod" placeholder="Enter each endpoint in a new line (with /)"></textarea>
       </div>
-
+      
       <button id="endpoint_scan_start_btn">Start Endpoint Check</button>
-
+      
       <button id="endpoint_scan_result_btn">Check Scan Result</button>
 
+      
       <div id="no_of_endpoints_checked"></div>
       
     </div>
 
     <div id="endpoint_scan_result_display"></div>
-
 
 
     
