@@ -90,8 +90,20 @@
       <div id="custom_endpoints_inputs">
         <label class="custom_endpoints_label">Enter Endpoints to check</label>
         <textarea id="custom_endpoints_paylaod" placeholder="Enter each endpoint in a new line (with /)"></textarea>
-      </div>
+      </div><br><br>
       
+      <label for="concurrency_slider">
+        Parallel Requests: <span id="endpoint_scan_concurrency_value">5</span>
+      </label>
+
+      <input 
+        type="range" 
+        id="endpoint_scan_concurrency_slider" 
+        min="1" 
+        max="10" 
+        value="5"
+      >
+
       <button id="endpoint_scan_start_btn">Start Endpoint Check</button>
       
       <button id="endpoint_scan_result_btn">Check Scan Result</button>

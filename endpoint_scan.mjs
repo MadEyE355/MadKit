@@ -13,6 +13,19 @@ const clearEndpointScanResult = document.getElementById("clear_endpoint_scan_res
 
 const xssMainBtn = document.getElementById("xss_main_btn");
 
+
+let concurrency = 5;
+
+const concurrencySlider = document.getElementById("endpoint_scan_concurrency_slider");
+const concurrencyValue = document.getElementById("endpoint_scan_concurrency_value");
+
+concurrencySlider.addEventListener("input", () => {
+    concurrency = parseInt(concurrencySlider.value);
+    concurrencyValue.textContent = concurrency;
+});
+
+
+
 endpointScanBtn.addEventListener("click", () => {
     endpointScanInputs.style.display = "block";
     xssMainBtn.style.display = "none";
@@ -79,7 +92,7 @@ endpointScanStartBtn.addEventListener("click", async () => {
 
     let payload_length = payload_parts.length;
 
-    const concurrency = 5; // 🔥 5 parallel requests
+
     let completed = 0;
 
     for (let i = 0; i < payload_parts.length; i += concurrency) {
