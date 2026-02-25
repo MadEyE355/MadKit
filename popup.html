@@ -27,6 +27,12 @@
         display: none;
       }
 
+
+      #intruder_sub_btns , #intruder_sniper_inputs {
+        display: none;
+      }
+
+
       
 
       
@@ -34,13 +40,13 @@
     </style>
   </head>
   <body>
-    <h3>MadKit</h3>
+    <h2>MadKit</h2>
 
 
 
 
 
-    <button id="xss_main_btn">XSS</button>
+    <button id="xss_main_btn" class="front_btns">XSS</button>
 
     <div id="xss_sub_btns">
 
@@ -66,14 +72,11 @@
     </div>
 
 
+<!--  -->
 
 
 
-
-
-
-
-    <button id="endpoint_scan_btn">Endpoint Scan</button>
+    <button id="endpoint_scan_btn" class="front_btns">Endpoint Scan</button>
     
     <div id="endpoint_scan_inputs">
       <button id="clear_endpoint_scan_result">Clear Endpoint Scan Results</button>
@@ -101,8 +104,38 @@
     <div id="endpoint_scan_result_display"></div>
 
 
+
+
+<!--  -->
+
+
     
 
+    <button id="intruder_main_btn" class="front_btns">Intruder</button>
+
+    <div id="intruder_sub_btns">
+      <h3>Intruder</h3>
+      
+      <button id="intruder_sniper_btn">Sniper</button>
+
+          <div id="intruder_sniper_inputs">
+            <h4>Sniper</h4>
+
+            <h5>Put $$ at payload site</h5>
+            <h5>Payload will be injected between dollar sign</h5>
+            <label class="intruder_sniper_inputs_label">Enter Fetch Req</label>
+            <textarea id="intruder_sniper_req_text" placeholder="Copy request as fetch and paste here , put $$ sign where you want to inject payload"></textarea>
+            <br><br>
+
+            <label class="intruder_sniper_inputs_label">Enter Payload List</label>
+            <textarea id="intruder_sniper_payload" placeholder="Enter each payload in a new line"></textarea>
+
+            <button id="intruder_sniper_start_btn">Start sniper attack</button>
+
+
+          </div>
+
+    </div>
 
 
 
@@ -119,6 +152,7 @@
 
     <script type="module" src="custom_xss.mjs"></script>
     <script type="module" src="endpoint_scan.mjs"></script>
+    <script type="module" src="intruder_sniper.mjs"></script>
 
   </body>
 </html>
