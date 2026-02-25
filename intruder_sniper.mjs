@@ -19,3 +19,19 @@ sniperBtn.addEventListener("click", () => {
 
     sniperBtn.style.display = "none";
 })
+
+
+
+
+
+document.getElementById("intruder_sniper_start_btn")
+  .addEventListener("click", () => {
+
+    chrome.windows.create({
+        url: chrome.runtime.getURL("sniper_window.html"),
+        type: "popup",
+        width: 1000,
+        height: 700
+    });
+
+});
