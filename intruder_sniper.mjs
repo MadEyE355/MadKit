@@ -3,8 +3,12 @@ const frontBtns = document.querySelectorAll(".front_btns")
 const intruderMainBtn = document.getElementById("intruder_main_btn");
 const intruderSubBtnsDiv = document.getElementById("intruder_sub_btns");
 const sniperBtn = document.getElementById("intruder_sniper_btn");
-const sniperInputs = document.getElementById("intruder_sniper_inputs");
+const sniperInputsDiv = document.getElementById("intruder_sniper_inputs");
 
+// textareas and inputs
+const sniperReqText = document.getElementById("intruder_sniper_req_text"); //request copied as fetch
+const sniperPayload = document.getElementById("intruder_sniper_payload"); //payload to enter at site
+const sniperWindowName = document.getElementById("intrude_sniper_window_name"); //title of intruder_sniper_results.html
 
 intruderMainBtn.addEventListener("click", () => {
     intruderSubBtnsDiv.style.display = "block";
@@ -15,7 +19,7 @@ intruderMainBtn.addEventListener("click", () => {
 })
 
 sniperBtn.addEventListener("click", () => {
-    sniperInputs.style.display = "block";
+    sniperInputsDiv.style.display = "block";
 
     sniperBtn.style.display = "none";
 })
@@ -23,15 +27,40 @@ sniperBtn.addEventListener("click", () => {
 
 
 
-
 document.getElementById("intruder_sniper_start_btn")
-  .addEventListener("click", () => {
+.addEventListener("click", () => {
+
+
+    const data_to_send = {
+        req: sniperReqText.value,
+        payload: sniperPayload.value,
+        window_name: sniperWindowName.value
+    };
 
     chrome.windows.create({
-        url: chrome.runtime.getURL("sniper_window.html"),
+        url: chrome.runtime.getURL("intruder_sniper_results.html"),
         type: "popup",
         width: 1000,
         height: 700
-    });
+    }, (createdWindow) => {
 
+        const tabId = createdWindow.tabs[0].id;
+
+        // Wait until tab fully loads
+        chrome.tabs.onUpdated.addListener(function listener(updatedTabId, info) {
+
+            if (updatedTabId === tabId && info.status === "complete") {
+
+                // Remove listener so it runs only once
+                chrome.tabs.onUpdated.removeListener(listener);
+
+                // Send data directly to that specific tab
+                chrome.tabs.sendMessage(tabId, {
+                    type: "SNIPER_DATA",
+                    data: data_to_send
+                });
+            }
+        });
+
+    });
 });

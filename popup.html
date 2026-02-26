@@ -134,13 +134,19 @@
             <h4>Sniper</h4>
 
             <h5>Put $$ at payload site</h5>
-            <h5>Payload will be injected between dollar sign</h5>
+            <h5>Double Dollar sign will be replaced with payload</h5>
             <label class="intruder_sniper_inputs_label">Enter Fetch Req</label>
             <textarea id="intruder_sniper_req_text" placeholder="Copy request as fetch and paste here , put $$ sign where you want to inject payload"></textarea>
             <br><br>
 
             <label class="intruder_sniper_inputs_label">Enter Payload List</label>
             <textarea id="intruder_sniper_payload" placeholder="Enter each payload in a new line"></textarea>
+            <br><br>
+
+            <span>
+            <label class="intruder_sniper_inputs_label">Enter Window Name : </label>
+            <input id="intrude_sniper_window_name" type="text" value="Sniper 1">
+            </span>
 
             <button id="intruder_sniper_start_btn">Start sniper attack</button>
 
