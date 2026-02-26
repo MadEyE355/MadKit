@@ -1,3 +1,5 @@
+const frontBtns = document.querySelectorAll(".front_btns")
+
 const xssMainBtn = document.getElementById("xss_main_btn");
 const xssSubBtns = document.getElementById("xss_sub_btns");
 const customXssBtn = document.getElementById("custom_xss_btn");
@@ -23,6 +25,11 @@ xssMainBtn.addEventListener("click", () => {
     xssSubBtns.style.display = "block";
     
     endpointScanBtn.style.display = "none";
+
+    // to hide front buttons
+    frontBtns.forEach(e => {
+        e.style.display = "none";
+    })
 })
 
 customXssBtn.addEventListener("click", (e) => {

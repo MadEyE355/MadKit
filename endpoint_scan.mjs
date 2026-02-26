@@ -1,3 +1,5 @@
+const frontBtns = document.querySelectorAll(".front_btns")
+
 const endpointScanBtn = document.getElementById("endpoint_scan_btn");
 const endpointScanInputs = document.getElementById("endpoint_scan_inputs");
 const customEndpointsCheckbox = document.getElementById("custom_endpoints_checkbox");
@@ -31,6 +33,12 @@ endpointScanBtn.addEventListener("click", () => {
     xssMainBtn.style.display = "none";
     endpointScanStartBtn.style.display = "block";
     show_result_history();
+
+
+    // to hide front buttons
+    frontBtns.forEach(e => {
+        e.style.display = "none";
+    })
 });
 
 customEndpointsCheckbox.addEventListener("change", () => {
@@ -55,7 +63,7 @@ endpointScanStartBtn.addEventListener("click", async () => {
         alert("enter site starting from https till .com");
         return;
     }
-    
+
 
     let payload = `
 /admin
