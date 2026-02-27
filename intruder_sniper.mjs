@@ -54,8 +54,7 @@ document.getElementById("intruder_sniper_start_btn")
                 // Remove listener so it runs only once
                 chrome.tabs.onUpdated.removeListener(listener);
 
-                // Send data directly to that specific tab
-                chrome.tabs.sendMessage(tabId, {
+                chrome.runtime.sendMessage({
                     type: "SNIPER_DATA",
                     data: data_to_send
                 });

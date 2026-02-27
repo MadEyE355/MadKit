@@ -5,7 +5,7 @@ var sniper_attack_results = []
 chrome.runtime.onMessage.addListener(async (message, sender) => {
 
     if (message.type === "START_INTRUDE") {
-        // console.log(message)
+        console.log(message)
         const parsed_req_arr = message.data;
         const number_of_parallel_req = message.parallel;
 
@@ -15,7 +15,7 @@ chrome.runtime.onMessage.addListener(async (message, sender) => {
 
             await Promise.all(
                 chunk.map(async (reqObj) => {
-                    // console.log(reqObj)
+                    console.log(reqObj)
 
                     try {
 

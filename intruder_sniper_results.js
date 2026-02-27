@@ -19,12 +19,12 @@ chrome.runtime.onMessage.addListener(async (message, sender) => {
         console.log("parsed req after injection : " , parsed_req_arr)
 
         // 🔥 Send parsed requests to content script (lab page)
-        chrome.tabs.query({ active: true, currentWindow: false }, function(tabs) {
+        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
 
             if (tabs.length > 0) {
                 chrome.tabs.sendMessage(tabs[0].id, {
                     type: "START_INTRUDE",
-                    data: parsed_req_arr,
+                    data: parsed_req_arr, 
                     parallel: number_of_parallel_req
                 });
             }
