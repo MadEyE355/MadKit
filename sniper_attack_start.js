@@ -31,6 +31,8 @@ async function startIntrude(message){
 
                 try {
 
+                    const start_time = performance.now();
+
                     const response = await fetch(reqObj.url, {
                         ...reqObj.options,
                         credentials: "include",
@@ -39,13 +41,18 @@ async function startIntrude(message){
 
                     const text = await response.text();
 
+                    const end_time = performance.now();
+                    const response_time = Math.round(end_time - start_time);
+
                     chrome.runtime.sendMessage({
                         type: "SNIPER_RESULT",
                         data: {
+                            response_string: text,
                             url: reqObj.url,
                             status: response.status,
                             length: text.length,
                             payload: reqObj.payload,
+                            response_time: response_time,
 
                             sent_by : message.recieved_from,
                         }

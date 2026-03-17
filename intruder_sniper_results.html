@@ -3,11 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <title>Sniper Results</title>
+    <style>
+        body {
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    background-color: #f4f6f8;
+    padding: 30px;
+}
+
+.render_btn {
+    padding: 5px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: #3b82f6;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.05s ease;
+}
+
+.render_btn:hover {
+    background-color: #2563eb;
+}
+
+.render_btn:active {
+    transform: scale(0.96);
+}
+
+#results_table {
+    border-collapse: collapse;
+    width: 70%;
+    margin: auto;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+#results_table th {
+    background-color: #2c3e50;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-size: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+#results_table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    font-size: 15px;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+#results_table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+#results_table tr:nth-child(odd) {
+    background-color: rgb(181, 177, 177);
+}
+
+#results_table tr:hover {
+    background-color: #eaf2ff;
+    transition: 0.2s;
+}
+
+/* make payload wrap instead of overflowing */
+#results_table td:first-child {
+    word-break: break-all;
+}
+
+
+    </style>
 </head>
 <body>
 
     <h2>Sniper Attack Results</h2>
-    <div id="results"></div>
+    <div id="results" class="main_layout">
+
+    <div class="table_section">
+
+        <table id="results_table">
+            <tr>
+                <th>#</th>
+                <th>Payload</th>
+                <th>Status</th>
+                <th>Length</th>
+                <th>Response Time</th>
+                <th>Render</th>
+            </tr>
+
+        </table>
+    </div>
+    
+    </div>
 
     <script src="intruder_sniper_results.js"></script>
 </body>

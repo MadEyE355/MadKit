@@ -3,6 +3,8 @@ var sniper_data = null;
 var sniper_attack_results = []
 var current_popup_tabid = null;
 
+var result_index = 0;
+
 chrome.runtime.onMessage.addListener(async (message, sender) => {
 
     // 1️⃣ Receive initial data from popup
@@ -54,14 +56,17 @@ chrome.runtime.onMessage.addListener(async (message, sender) => {
 
         console.log("recieved data from content script" , message)
 
-        sniper_attack_results.push(message.data);
+        // sniper_attack_results.push(message.data);
 
-        const resultsDiv = document.getElementById("results");
+        // const resultsDiv = document.getElementById("results");
 
-        const line = document.createElement("div");
-        line.textContent = `${message.data.payload} | ${message.data.status} | ${message.data.length || ""}`;
+        // const line = document.createElement("div");
+        // line.textContent = `${message.data.payload} | ${message.data.status} | ${message.data.length || ""}`;
 
-        resultsDiv.appendChild(line);
+        // resultsDiv.appendChild(line);
+
+        result_index++;
+        push_results(message)
         }
     }
 });
@@ -104,4 +109,47 @@ async function inject_payloads_in_req(str_req , str_payload){
     }
 
     return req_after_injection;
+}
+
+
+let dis_responses = []
+
+function push_results(message){
+    let row = document.createElement("tr")
+    let resultsTable = document.getElementById("results_table")
+
+    //dis = display ; which will be displayed in html
+    let dis_payload = message.data.payload;
+    let dis_status = message.data.status;
+    let dis_length = message.data.length;
+    let dis_response_string = message.data.response_string
+    let dis_response_time = message.data.response_time
+
+    row.innerHTML = `
+    <td>${result_index}</td>
+    <td>${dis_payload}</td>
+    <td>${dis_status}</td>
+    <td>${dis_length}</td>
+    <td>${dis_response_time}</td>
+    <td><button class="render_btn">Render</button></td>
+    `
+
+
+    resultsTable.append(row)
+
+    // render button click
+    row.querySelector(".render_btn").addEventListener("click", () => {
+        openRenderPage(dis_response_string)
+    });
+    
+    
+}
+
+
+function openRenderPage(html) {
+
+    const blob = new Blob([html], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
+
+    window.open(url, "_blank", "width=1000,height=700");
 }
