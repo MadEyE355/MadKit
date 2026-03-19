@@ -67,6 +67,11 @@ chrome.runtime.onMessage.addListener(async (message, sender) => {
 
         result_index++;
         push_results(message)
+
+        sniper_attack_results.push({
+            ...message,
+            index : result_index,
+        })
         }
     }
 });
@@ -126,16 +131,17 @@ function push_results(message){
     let dis_response_time = message.data.response_time
 
     row.innerHTML = `
-    <td>${result_index}</td>
-    <td>${dis_payload}</td>
-    <td>${dis_status}</td>
-    <td>${dis_length}</td>
-    <td>${dis_response_time}</td>
-    <td><button class="render_btn">Render</button></td>
+    <td class="td_index">${result_index}</td>
+    <td class="td_payload">${dis_payload}</td>
+    <td class="td_status">${dis_status}</td>
+    <td class="td_length">${dis_length}</td>
+    <td class="td_response_time">${dis_response_time}</td>
+    <td class="td_render"><button class="render_btn">Render</button></td>
     `
 
 
     resultsTable.append(row)
+
 
     // render button click
     row.querySelector(".render_btn").addEventListener("click", () => {
@@ -152,4 +158,41 @@ function openRenderPage(html) {
     const url = URL.createObjectURL(blob);
 
     window.open(url, "_blank", "width=1000,height=700");
+}
+
+
+// sorting the data when clicked on column name
+
+document.querySelectorAll(".column_name").forEach((e, index) => {
+    e.addEventListener("click", () => {
+        sortTable(index);
+    });
+});
+
+const table = document.getElementById("results_table");
+
+let asc = true;
+
+function sortTable(colIndex) {
+    const rows = Array.from(table.querySelectorAll("tr")).slice(1);
+
+    rows.sort((a, b) => {
+        let A = a.children[colIndex].innerText.trim();
+        let B = b.children[colIndex].innerText.trim();
+
+        let numA = parseFloat(A);
+        let numB = parseFloat(B);
+
+        if (!isNaN(numA) && !isNaN(numB)) {
+            return asc ? numA - numB : numB - numA;
+        }
+
+        return asc
+            ? A.localeCompare(B)
+            : B.localeCompare(A);
+    });
+
+    rows.forEach(row => table.appendChild(row));
+
+    asc = !asc; // toggle
 }
