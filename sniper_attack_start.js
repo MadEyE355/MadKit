@@ -54,6 +54,8 @@ async function startIntrude(message){
                             payload: reqObj.payload,
                             response_time: response_time,
 
+                            requestOptions: reqObj.options,
+
                             sent_by : message.recieved_from,
                         }
                     });

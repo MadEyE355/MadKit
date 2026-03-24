@@ -32,7 +32,7 @@
 
 #results_table {
     border-collapse: collapse;
-    width: 70%;
+    width: 100%;
     margin: auto;
     background-color: white;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -73,29 +73,72 @@
     word-break: break-all;
 }
 
+.main_layout {
+    display: flex;
+    gap: 20px; /* space between left and right */
+}
+
+/* LEFT SIDE */
+.left_panel {
+    width: 60%;   /* adjust as needed */
+}
+
+/* RIGHT SIDE */
+.right_panel {
+    width: 40%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* SPLIT RIGHT INTO 2 */
+.right_top,
+.right_bottom {
+    flex: 1; /* equal height */
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 15px;
+}
+
 
     </style>
 </head>
 <body>
 
     <h2>Sniper Attack Results</h2>
+    <div id="search_div">
+        
+    </div>
+
     <div id="results" class="main_layout">
 
-    <div class="table_section">
+        <div class="left_panel">
+            <div class="table_section">
 
-        <table id="results_table">
-            <tr>
-                <th class="column_name">#</th>
-                <th class="column_name">Payload</th>
-                <th id="status_code_column" class="column_name">Status</th>
-                <th id="length_column" class="column_name">Length</th>
-                <th id="response_time_column" class="column_name">Response Time</th>
-                <th class="column_name">Render</th>
-            </tr>
+                <table id="results_table">
+                    <tr>
+                        <th class="column_name">#</th>
+                        <th class="column_name">Payload</th>
+                        <th id="status_code_column" class="column_name">Status</th>
+                        <th id="length_column" class="column_name">Length</th>
+                        <th id="response_time_column" class="column_name">Response Time</th>
+                        <th class="column_name">Render</th>
+                    </tr>
 
-        </table>
-    </div>
-    
+                </table>
+            </div>
+        </div>
+
+
+        <div class="right_panel">
+            <div>Payload : <span id="display_payload"></span></div>
+            <div>Request</div>
+            <div class="right_top" id="display_request"></div>
+            <div>Response</div>
+            <div class="right_bottom" id="display_response"></div>
+        </div>
     </div>
 
     <script src="intruder_sniper_results.js"></script>

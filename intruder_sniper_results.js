@@ -196,3 +196,29 @@ function sortTable(colIndex) {
 
     asc = !asc; // toggle
 }
+
+
+// showing request and response on right
+let displayResponseDiv = document.getElementById("display_response");
+let dispalyRequestDiv = document.getElementById("display_request");
+let displayPayloadDiv = document.getElementById("display_payload");
+document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("td_index")) {
+        console.log("index clicked");
+
+        let index_to_display = Number(e.target.textContent.trim());
+
+        for (let i = 0; i < sniper_attack_results.length; i++) {
+            if (index_to_display == sniper_attack_results[i].index) {
+                displayResponseDiv.textContent =
+                    sniper_attack_results[i].data.response_string;
+
+                dispalyRequestDiv.textContent = JSON.stringify(sniper_attack_results[i].data.requestOptions,null,2);
+
+                displayPayloadDiv.textContent = sniper_attack_results[i].data.payload
+                
+                break;
+            }
+        }
+    }
+});
